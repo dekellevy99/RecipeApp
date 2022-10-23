@@ -1,36 +1,23 @@
-CREATE DATABASE poketrackerdb;
-use poketrackerdb;
+CREATE DATABASE recipeappdb;
+use recipeappdb;
 
-CREATE TABLE Trainer(
-    name VARCHAR(255) PRIMARY KEY,
-    town VARCHAR(255)
-);
-
-CREATE TABLE Pokemon(
+CREATE TABLE Recipe(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    height INT,
-    weight INT
+    title VARCHAR(255),
+    thambnail VARCHAR(255),
+    href VARCHAR(255)
 );
 
-CREATE TABLE Type(
-    pokeType VARCHAR(255) PRIMARY KEY
+CREATE TABLE Ingrediant(
+    name VARCHAR(255) PRIMARY KEY,
+    glutenFree BOOLEAN,
+    dairyFree BOOLEAN
 );
 
-CREATE TABLE PokemonTrainer(
-    pokemonId INT,
-    trainerName VARCHAR(255),
-    PRIMARY KEY(pokemonId, trainerName),
-    FOREIGN KEY(pokemonId) REFERENCES Pokemon(id),
-    FOREIGN KEY(trainerName) REFERENCES Trainer(name)
+CREATE TABLE RecipeIngrediant(
+    recipeId INT,
+    ingrediantName VARCHAR(255),
+    PRIMARY KEY(recipeId, ingrediantName),
+    FOREIGN KEY(recipeId) REFERENCES Recipe(id),
+    FOREIGN KEY(ingrediantName) REFERENCES Ingrediant(name)
 );
-
-CREATE TABLE PokemonType(
-    pokemonId INT,
-    pokeType VARCHAR(255),
-    PRIMARY KEY(pokemonId, pokeType),
-    FOREIGN KEY(pokemonId) REFERENCES Pokemon(id),
-    FOREIGN KEY(pokeType) REFERENCES Type(pokeType)  
-);
-
-
