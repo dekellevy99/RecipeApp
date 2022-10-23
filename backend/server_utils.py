@@ -14,23 +14,25 @@ def _is_recipe_dairy_free(recipe: RecipeData):
     recipe_ingrediants = recipe.ingredients
     dairy_ingrediants = db_manager.get_dairy_ingrediants()
     result = any(map(lambda ingrediant: ingrediant in dairy_ingrediants, recipe_ingrediants))
-    return result != False
+    return result != True
 
 
 def _is_recipe_gluten_free(recipe: RecipeData):
     recipe_ingrediants = recipe.ingredients
     gluten_ingrdiants = db_manager.get_gluten_ingrediants()
     result = any(map(lambda ingrediant: ingrediant in gluten_ingrdiants, recipe_ingrediants))
-    return result != False
+    return result != True
 
 
 def filter_recipes(recipes, dairyFree, glutenFree):
-    recipes = map(lambda recipe: RecipeData(recipe), recipes)
+    recipesData = []
+    for recipe in recipes:
+        recipesData.append(RecipeData(**recipe))
 
     if dairyFree:
-        recipes = filter(lambda recipe: _is_recipe_dairy_free(recipe), recipes)
+        recipesData = filter(lambda recipe: _is_recipe_dairy_free(recipe), recipesData)
 
     if  glutenFree:
-        recipes = filter(lambda recipe: _is_recipe_gluten_free(recipe), recipes)
+        recipesData = filter(lambda recipe: _is_recipe_gluten_free(recipe), recipesData)
    
-    return list(recipes)
+    return list(recipesData)
