@@ -1,0 +1,4 @@
+GET_DAIRY_INGREDIANTS = """SELECT name FROM DairyIngrediant"""
+GET_GLUTEN_INGREDIANTS = """SELECT name FROM GlutenIngrediant"""
+INSERT_DAIRY_INGREDIANT = """INSERT INTO DairyIngrediant VALUES(%s)"""
+INSERT_GLUTEN_INGREDIANT = """INSERT INTO GlutenIngrediant VALUES(%s)"""
