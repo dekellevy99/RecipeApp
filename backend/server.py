@@ -16,8 +16,8 @@ def root():
 
 
 @app.get("/recipes")
-def get_recipes(ingrediant, dairyFree="", glutenFree=""):
-    recipes = requests.get(f"https://recipes-goodness.herokuapp.com/recipes/{ingrediant}").json()["results"]
+def get_recipes(ingredient, dairyFree="", glutenFree=""):
+    recipes = requests.get(f"https://recipes-goodness.herokuapp.com/recipes/{ingredient}").json()["results"]
     dairyFree = True if dairyFree == "true" else False
     glutenFree = True if dairyFree == "true" else False
     filtered_recipes = server_utils.filter_recipes(recipes, dairyFree, glutenFree)
