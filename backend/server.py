@@ -1,17 +1,27 @@
+from http import server
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-# from routers import pokemons_api, trainers_api
 import uvicorn
+import requests
+import server_utils
 
 app = FastAPI()
-# app.include_router(module.router)
 
 app.mount("/client/build", StaticFiles(directory="client/build"), name="static")
 
 @app.get("/")
 def root():
     return FileResponse("./client/build/index.html")
+
+
+@app.get("/recipes")
+def get_recipes(ingrediant, dairyFree="", glutenFree=""):
+    recipes = requests.get(f"https://recipes-goodness.herokuapp.com/recipes/{ingrediant}").json()["results"]
+    dairyFree = True if dairyFree == "true" else False
+    glutenFree = True if dairyFree == "true" else False
+    filtered_recipes = server_utils.filter_recipes(recipes, dairyFree, glutenFree)
+    return {"recipes": filtered_recipes}
 
 
 if __name__ == "__main__":
