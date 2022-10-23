@@ -4,19 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./client/build/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div id="container">
+        <div id="search-container">
+            <input id="ingredient-input" type="text" placeholder="Enter ingredient name">
+            <button id="search-btn">Search</button>
+            <div>
+                <label>
+                    <input type="checkbox" id="dairy-checkbox">
+                    Dairy Free        
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" id="gluten-checkbox">
+                    Gluten Free       
+                </label>
+            </div>
+
+        </div>
+
+        <div id="recipes-container"> 
+
+        </div>
+    </div>
 
     <!-- ================================== TEMPLATES SCRIPTS ================================== -->
-    <script id="template" type="text/x-handlebars-template">
-
+    <script id="recipe-card-template" type="text/x-handlebars-template">
+        {{#each recipes}}
+            <div class="card">
+                <img src="{{thumbnail}}">
+                <div class="recipe-info">
+                    <h4><b>{{title}}</b></h4>
+                    <ul>
+                        {{#each ingredients}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/each}}
     </script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="./client/build/Render.js"></script>
+    <script src="./client/build/Recipe.js"></script>
+    <script src="./client/build/Data.js"></script>
+    <script src="./client/build/main.js"></script>
 </body>
 </html>
