@@ -1,11 +1,11 @@
-CREATE DATABASE recipeappdb;
+CREATE DATABASE IF NOT EXISTS recipeappdb;
 use recipeappdb;
 
-CREATE TABLE DairyIngrediant(
+CREATE TABLE IF NOT EXISTS DairyIngrediant(
     name VARCHAR(255) PRIMARY KEY
 );
 
-CREATE TABLE GlutenIngrediant(
+CREATE TABLE IF NOT EXISTS GlutenIngrediant(
     name VARCHAR(255) PRIMARY KEY
 );
 

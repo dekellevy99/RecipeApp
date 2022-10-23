@@ -18,7 +18,9 @@ class DB_Manager:
             cursorclass=pymysql.cursors.DictCursor
         )
 
-    def init_tables(self):
+        self._init_tables()
+
+    def _init_tables(self):
         dairy_ingredients = ["Cream","Cheese","Milk","Butter","Creme","Ricotta","Mozzarella","Custard","Cream Cheese"]
         gluten_ingredients = ["Flour","Bread","spaghetti","Biscuits","Beer"]
         with self.connection.cursor() as cursor:
@@ -40,4 +42,3 @@ class DB_Manager:
 
 
 db_manager = DB_Manager()
-db_manager.init_tables()
